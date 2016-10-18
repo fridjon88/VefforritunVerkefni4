@@ -21,10 +21,11 @@
       let a = response.results;
       console.log(a[1].date);
 
-        // Create a new table
+        // búum til töflu
+
         let table = document.createElement("table");
         table.className = 'table';
-        // Add the table header
+        // heitum á dálum bætt við
         const tr = document.createElement('tr');
         const airline = document.createElement('td');
         airline.innerHTML = "Airline";
@@ -46,6 +47,12 @@
         tr.appendChild(to);
         //öllum dálukum bætt við
         table.appendChild(tr);
+        // const div = ;//ATH ATH
+        // document.body.querySelector("html body div.container").appendChild(table);
+        // $("#div1").prepend(table);
+        // const currentDiv = document.getElementById("div1");
+        // document.body.insertBefore(table, currentDiv);
+
       for(let value of a) {
         console.log(value.airline);
         const tr = document.createElement('tr');
@@ -67,8 +74,9 @@
         const to = document.createElement('td');
         to.innerHTML = value.to;
         tr.appendChild(to);
-
         table.appendChild(tr);
+
+
       }
       // Add the created table to the HTML page
       document.body.appendChild(table);

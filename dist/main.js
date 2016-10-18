@@ -22,10 +22,11 @@
       var a = response.results;
       console.log(a[1].date);
 
-      // Create a new table
+      // búum til töflu
+
       var table = document.createElement("table");
       table.className = 'table';
-      // Add the table header
+      // heitum á dálum bætt við
       var tr = document.createElement('tr');
       var airline = document.createElement('td');
       airline.innerHTML = "Airline";
@@ -47,6 +48,12 @@
       tr.appendChild(to);
       //öllum dálukum bætt við
       table.appendChild(tr);
+      // const div = ;//ATH ATH
+      // document.body.querySelector("html body div.container").appendChild(table);
+      // $("#div1").prepend(table);
+      // const currentDiv = document.getElementById("div1");
+      // document.body.insertBefore(table, currentDiv);
+
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -75,7 +82,6 @@
           var _to = document.createElement('td');
           _to.innerHTML = value.to;
           _tr.appendChild(_to);
-
           table.appendChild(_tr);
         }
         // Add the created table to the HTML page
