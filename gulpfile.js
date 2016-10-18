@@ -19,21 +19,29 @@ gulp.task('lint-scss', () => {
     .pipe(sassLint.failOnError())
 });
 
-gulp.task('serve', ['sasssync'], function() {
+gulp.task('serve', ['sasssync', 'babelsync'], function() {
 
     browserSync.init({
         server: "./"
     });
 
     gulp.watch("./src/*.scss", ['sasssync']);
+    gulp.watch("./src/*.js", ['babelsync']);
     gulp.watch("*.html").on('change', browserSync.reload);
     gulp.watch(".dist/*.css").on('change', browserSync.reload);
+    gulp.watch(".dist/*.js").on('change', browserSync.reload);
 });
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sasssync', function() {
     return gulp.src("src/*.scss")
         .pipe(sass())
+        .pipe(gulp.dest("./dist"))
+        .pipe(browserSync.stream());
+});
+gulp.task('babelsync', function() {
+    return gulp.src("src/*.js")
+        .pipe(babel())
         .pipe(gulp.dest("./dist"))
         .pipe(browserSync.stream());
 });
