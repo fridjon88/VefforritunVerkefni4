@@ -1,16 +1,20 @@
 'use strict';
 
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
+  Flug();
+});
+var Flug = function Flug() {
 
-  $(init);
+  // $(init);
 
-  function init() {}
-  // alert("jQuery");
-
+  function init() {
+    alert("jQuery");
+  }
   // const foo = [1, 2, 3];
   // const bar = foo.map(i => i*2);
   //
   // const foo2 = 3
+
   $.ajax({
     'url': 'https://apis.is/flight',
     'type': 'GET',
@@ -24,8 +28,11 @@
 
       // búum til töflu
 
-      var table = document.createElement("table");
-      table.className = 'table';
+      // let table = document.createElement("table");
+      var taflaHd = document.querySelector("thead");
+      var taflabdy = document.querySelector("tbody");
+      taflabdy.className += "table-striped";
+      // table.className = 'table';
       // heitum á dálum bætt við
       var tr = document.createElement('tr');
       var airline = document.createElement('td');
@@ -47,7 +54,15 @@
       to.innerHTML = "To";
       tr.appendChild(to);
       //öllum dálukum bætt við
-      table.appendChild(tr);
+      // table.appendChild(tr);
+      console.log(taflaHd);
+      taflaHd.appendChild(tr);
+      //ath
+
+      // console.log(el);
+      //
+      // el.appendChild(tr);
+
       // const div = ;//ATH ATH
       // document.body.querySelector("html body div.container").appendChild(table);
       // $("#div1").prepend(table);
@@ -82,9 +97,10 @@
           var _to = document.createElement('td');
           _to.innerHTML = value.to;
           _tr.appendChild(_to);
-          table.appendChild(_tr);
+          taflabdy.appendChild(_tr);
         }
         // Add the created table to the HTML page
+        // document.body.appendChild(table);
       } catch (err) {
         _didIteratorError = true;
         _iteratorError = err;
@@ -99,8 +115,6 @@
           }
         }
       }
-
-      document.body.appendChild(table);
     }
     // var data = {"a": 1, "b": 3, "ds": 4};
     //
@@ -141,4 +155,4 @@
     // }
 
   });
-})();
+};

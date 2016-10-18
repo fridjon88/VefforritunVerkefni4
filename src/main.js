@@ -1,15 +1,19 @@
-(function (){
+document.addEventListener('DOMContentLoaded',function() {
+ Flug();
+});
+let Flug = (function (){
 
-  $(init);
+  // $(init);
 
   function init()
   {
-    // alert("jQuery");
+     alert("jQuery");
   }
   // const foo = [1, 2, 3];
   // const bar = foo.map(i => i*2);
   //
   // const foo2 = 3
+
   $.ajax({
     'url': 'https://apis.is/flight',
     'type': 'GET',
@@ -23,8 +27,11 @@
 
         // búum til töflu
 
-        let table = document.createElement("table");
-        table.className = 'table';
+        // let table = document.createElement("table");
+        let taflaHd = document.querySelector("thead");
+        let taflabdy = document.querySelector("tbody");
+        taflabdy.className += "table-striped";
+        // table.className = 'table';
         // heitum á dálum bætt við
         const tr = document.createElement('tr');
         const airline = document.createElement('td');
@@ -46,7 +53,15 @@
         to.innerHTML = "To";
         tr.appendChild(to);
         //öllum dálukum bætt við
-        table.appendChild(tr);
+        // table.appendChild(tr);
+        console.log(taflaHd);
+        taflaHd.appendChild(tr);
+        //ath
+
+        // console.log(el);
+        //
+        // el.appendChild(tr);
+
         // const div = ;//ATH ATH
         // document.body.querySelector("html body div.container").appendChild(table);
         // $("#div1").prepend(table);
@@ -74,12 +89,12 @@
         const to = document.createElement('td');
         to.innerHTML = value.to;
         tr.appendChild(to);
-        table.appendChild(tr);
+        taflabdy.appendChild(tr);
 
 
       }
       // Add the created table to the HTML page
-      document.body.appendChild(table);
+      // document.body.appendChild(table);
       }
       // var data = {"a": 1, "b": 3, "ds": 4};
   //
@@ -120,5 +135,6 @@
       // }
 
   }
+
   );
-})();
+});
