@@ -9,8 +9,8 @@ let Flug = (function() {
     //  getData('en', 'arrivals');
      const buttonKomur = document.querySelector("button.komur");
      const buttonBrottfarir = document.querySelector("button.brottfarir");
-     const buttonDepartures = document.querySelector("button.arrivals");
-     const buttonArrivals = document.querySelector("button.departures");
+     const buttonDepartures = document.querySelector("button.departures");
+     const buttonArrivals = document.querySelector("button.arrivals");
      console.log(buttonDepartures);
      console.log(buttonArrivals);
      buttonKomur.addEventListener("click",function(){getData('is', 'arrivals')});
@@ -54,7 +54,7 @@ let Flug = (function() {
     let realArrivalHeader ='';
     let toHeader ='';
     let fromHeader ='';
-
+    //veljum haus og body töflu
     let taflaHd = document.querySelector("thead");
     let taflabdy = document.querySelector("tbody");
     //tæmum töfluna ef það er e-ð í henni

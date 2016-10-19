@@ -11,8 +11,8 @@ var Flug = function Flug() {
     //  getData('en', 'arrivals');
     var buttonKomur = document.querySelector("button.komur");
     var buttonBrottfarir = document.querySelector("button.brottfarir");
-    var buttonDepartures = document.querySelector("button.arrivals");
-    var buttonArrivals = document.querySelector("button.departures");
+    var buttonDepartures = document.querySelector("button.departures");
+    var buttonArrivals = document.querySelector("button.arrivals");
     console.log(buttonDepartures);
     console.log(buttonArrivals);
     buttonKomur.addEventListener("click", function () {
@@ -63,7 +63,7 @@ var Flug = function Flug() {
     var realArrivalHeader = '';
     var toHeader = '';
     var fromHeader = '';
-
+    //veljum haus og body töflu
     var taflaHd = document.querySelector("thead");
     var taflabdy = document.querySelector("tbody");
     //tæmum töfluna ef það er e-ð í henni
