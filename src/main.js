@@ -156,12 +156,10 @@ let Flug = (function() {
     }
     //öllum dálukum bætt við
     // table.appendChild(tr);
-    console.log(taflaHd);
     taflaHd.appendChild(tr);
 
     //rúllum í gegnum gögn
     for (let value of data) {
-      console.log(value.airline);
       const tr = document.createElement('tr');
       const airline = document.createElement('td');
       airline.innerHTML = value.airline;

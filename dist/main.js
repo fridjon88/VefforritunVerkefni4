@@ -157,7 +157,6 @@ var Flug = function Flug() {
     }
     //öllum dálukum bætt við
     // table.appendChild(tr);
-    console.log(taflaHd);
     taflaHd.appendChild(tr);
 
     //rúllum í gegnum gögn
@@ -169,7 +168,6 @@ var Flug = function Flug() {
       for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var value = _step.value;
 
-        console.log(value.airline);
         var _tr = document.createElement('tr');
         var _airline = document.createElement('td');
         _airline.innerHTML = value.airline;
