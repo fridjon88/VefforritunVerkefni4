@@ -6,7 +6,17 @@ let Flug = (function() {
   // $(init);
 
   function init() {
-     getData('en', 'arrivals');
+    //  getData('en', 'arrivals');
+     const buttonKomur = document.querySelector("button.komur");
+     const buttonBrottfarir = document.querySelector("button.brottfarir");
+     const buttonDepartures = document.querySelector("button.arrivals");
+     const buttonArrivals = document.querySelector("button.departures");
+     console.log(buttonDepartures);
+     console.log(buttonArrivals);
+     buttonKomur.addEventListener("click",function(){getData('is', 'arrivals')});
+     buttonBrottfarir.addEventListener("click",function(){getData('is', 'departures')});
+     buttonArrivals.addEventListener("click",function(){getData('en', 'arrivals')});
+     buttonDepartures.addEventListener("click",function(){getData('en', 'departures')});
     // alert("jQuery");
   }
   init();
@@ -23,6 +33,10 @@ let Flug = (function() {
         },
         'success': function(response) {
           console.log(response.results);
+          //hreinsum domið
+          // while (taflabdy.firstChild) {
+          //     taflabdy.removeChild(taflabdy.firstChild);
+          //   }
           //köllum á fylkið inní objectnum
           let gogn = response.results;
           makeTable(gogn, language, type);
@@ -43,6 +57,7 @@ let Flug = (function() {
 
     let taflaHd = document.querySelector("thead");
     let taflabdy = document.querySelector("tbody");
+
     //athugum language, ef is þá breytum við header á töflu í
     //íslensku, ef e-ð annað en íslenska, þá er enska defautl
     if (language === 'is'){
