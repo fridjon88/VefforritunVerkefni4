@@ -57,6 +57,9 @@ let Flug = (function() {
 
     let taflaHd = document.querySelector("thead");
     let taflabdy = document.querySelector("tbody");
+    //tæmum töfluna ef það er e-ð í henni
+    $(taflaHd).empty();
+    $(taflabdy).empty();
 
     //athugum language, ef is þá breytum við header á töflu í
     //íslensku, ef e-ð annað en íslenska, þá er enska defautl
