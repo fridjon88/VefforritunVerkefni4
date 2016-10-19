@@ -8,151 +8,147 @@ var Flug = function Flug() {
   // $(init);
 
   function init() {
-    alert("jQuery");
+    getData('en', 'arrivals');
+    // alert("jQuery");
   }
-  // const foo = [1, 2, 3];
-  // const bar = foo.map(i => i*2);
-  //
-  // const foo2 = 3
+  init();
+  //language getur verið 'en' eða 'is', type getur verið 'departures'
+  //eða 'arrivals'
+  function getData(language, type) {
+    $.ajax({
+      'url': 'https://apis.is/flight',
+      'type': 'GET',
+      'dataType': 'json',
+      'data': {
+        'language': language,
+        'type': type
+      },
+      'success': function success(response) {
+        console.log(response.results);
+        //köllum á fylkið inní objectnum
+        var gogn = response.results;
+        makeTable(gogn, language, type);
+      }
+    });
+  }
+  // búum til töflu
+  function makeTable(data, language, type) {
+    // let table = document.createElement("table");
+    var airlineHeader = '';
+    var dateHeader = '';
+    var flightNumberHeader = '';
+    var plannedArrivalHeader = '';
+    var realArrivalHeader = '';
+    var toHeader = '';
+    var fromHeader = '';
 
-  $.ajax({
-    'url': 'https://apis.is/flight',
-    'type': 'GET',
-    'dataType': 'json',
-    'data': { 'language': 'en', 'type': 'departures' },
-    'success': function success(response) {
-      console.log(response.results);
-      //köllum á fylkið inní objectnum
-      var a = response.results;
-      console.log(a[1].date);
-
-      // búum til töflu
-
-      // let table = document.createElement("table");
-      var taflaHd = document.querySelector("thead");
-      var taflabdy = document.querySelector("tbody");
-      taflabdy.className += "table-striped";
-      // table.className = 'table';
-      // heitum á dálum bætt við
-      var tr = document.createElement('tr');
-      var airline = document.createElement('td');
-      airline.innerHTML = "Airline";
-      tr.appendChild(airline);
-      var date = document.createElement('td');
-      date.innerHTML = "Date";
-      tr.appendChild(date);
-      var flightNumber = document.createElement('td');
-      flightNumber.innerHTML = "Flight Number";
-      tr.appendChild(flightNumber);
-      var plannedArrival = document.createElement('td');
-      plannedArrival.innerHTML = "Planned Arrival";
-      tr.appendChild(plannedArrival);
-      var realArrival = document.createElement('td');
-      realArrival.innerHTML = "Real Arrival";
-      tr.appendChild(realArrival);
-      var to = document.createElement('td');
-      to.innerHTML = "To";
+    var taflaHd = document.querySelector("thead");
+    var taflabdy = document.querySelector("tbody");
+    //athugum language, ef is þá breytum við header á töflu í
+    //íslensku, ef e-ð annað en íslenska, þá er enska defautl
+    if (language === 'is') {
+      airlineHeader = 'Flugfélag';
+      dateHeader = 'Dagsetning';
+      flightNumberHeader = 'Númer flugs';
+      plannedArrivalHeader = 'Áætluð koma';
+      realArrivalHeader = 'Koma';
+      toHeader = 'Til';
+      fromHeader = 'Frá';
+    } else {
+      airlineHeader = 'Airline';
+      dateHeader = 'Date';
+      flightNumberHeader = 'Flight number';
+      plannedArrivalHeader = 'Planned arrival';
+      realArrivalHeader = 'Real arrival';
+      toHeader = 'To';
+      fromHeader = 'From';
+    }
+    // table.className = 'table';
+    // heitum á dálum bætt við
+    var tr = document.createElement('tr');
+    var airline = document.createElement('th');
+    airline.innerHTML = airlineHeader;
+    tr.appendChild(airline);
+    var date = document.createElement('th');
+    date.innerHTML = dateHeader;
+    tr.appendChild(date);
+    var flightNumber = document.createElement('th');
+    flightNumber.innerHTML = flightNumberHeader;
+    tr.appendChild(flightNumber);
+    var plannedArrival = document.createElement('th');
+    plannedArrival.innerHTML = plannedArrivalHeader;
+    tr.appendChild(plannedArrival);
+    var realArrival = document.createElement('th');
+    realArrival.innerHTML = realArrivalHeader;
+    tr.appendChild(realArrival);
+    if (type === 'departures') {
+      var to = document.createElement('th');
+      to.innerHTML = toHeader;
       tr.appendChild(to);
-      //öllum dálukum bætt við
-      // table.appendChild(tr);
-      console.log(taflaHd);
-      taflaHd.appendChild(tr);
-      //ath
+    } else if (type === 'arrivals') {
+      var from = document.createElement('th');
+      from.innerHTML = fromHeader;
+      tr.appendChild(from);
+    }
+    //öllum dálukum bætt við
+    // table.appendChild(tr);
+    console.log(taflaHd);
+    taflaHd.appendChild(tr);
 
-      // console.log(el);
-      //
-      // el.appendChild(tr);
+    //rúllum í gegnum gögn
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-      // const div = ;//ATH ATH
-      // document.body.querySelector("html body div.container").appendChild(table);
-      // $("#div1").prepend(table);
-      // const currentDiv = document.getElementById("div1");
-      // document.body.insertBefore(table, currentDiv);
+    try {
+      for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var value = _step.value;
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = a[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var value = _step.value;
-
-          console.log(value.airline);
-          var _tr = document.createElement('tr');
-          var _airline = document.createElement('td');
-          _airline.innerHTML = value.airline;
-          _tr.appendChild(_airline);
-          var _date = document.createElement('td');
-          _date.innerHTML = value.date;
-          _tr.appendChild(_date);
-          var _flightNumber = document.createElement('td');
-          _flightNumber.innerHTML = value.flightNumber;
-          _tr.appendChild(_flightNumber);
-          var _plannedArrival = document.createElement('td');
-          _plannedArrival.innerHTML = value.plannedArrival;
-          _tr.appendChild(_plannedArrival);
-          var _realArrival = document.createElement('td');
-          _realArrival.innerHTML = value.realArrival;
-          _tr.appendChild(_realArrival);
+        console.log(value.airline);
+        var _tr = document.createElement('tr');
+        var _airline = document.createElement('td');
+        _airline.innerHTML = value.airline;
+        _tr.appendChild(_airline);
+        var _date = document.createElement('td');
+        _date.innerHTML = value.date;
+        _tr.appendChild(_date);
+        var _flightNumber = document.createElement('td');
+        _flightNumber.innerHTML = value.flightNumber;
+        _tr.appendChild(_flightNumber);
+        var _plannedArrival = document.createElement('td');
+        _plannedArrival.innerHTML = value.plannedArrival;
+        _tr.appendChild(_plannedArrival);
+        var _realArrival = document.createElement('td');
+        _realArrival.innerHTML = value.realArrival;
+        _tr.appendChild(_realArrival);
+        //athuga með arrivals eða departures
+        if (type === 'departures') {
           var _to = document.createElement('td');
           _to.innerHTML = value.to;
           _tr.appendChild(_to);
           taflabdy.appendChild(_tr);
+        } else if (type === 'arrivals') {
+          var _from = document.createElement('td');
+          _from.innerHTML = value.from;
+          _tr.appendChild(_from);
+          taflabdy.appendChild(_tr);
+        } else {
+          throw "Wrong arrival or departure";
         }
-        // Add the created table to the HTML page
-        // document.body.appendChild(table);
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
       } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
+        if (_didIteratorError) {
+          throw _iteratorError;
         }
       }
     }
-    // var data = {"a": 1, "b": 3, "ds": 4};
-    //
-    //  // Create a new table
-    //  var table = document.createElement("table");
-    //
-    //  // Add the table header
-    //  var tr = document.createElement('tr');
-    //  var leftRow = document.createElement('td');
-    //  leftRow.innerHTML = "Name";
-    //  tr.appendChild(leftRow);
-    //  var rightRow = document.createElement('td');
-    //  rightRow.innerHTML = "Value";
-    //  tr.appendChild(rightRow);
-    //  table.appendChild(tr);
-    //
-    //  // Add the table rows
-    //  for (var name in data) {
-    //      var value = data[name];
-    //      var tr = document.createElement('tr');
-    //      var leftRow = document.createElement('td');
-    //      leftRow.innerHTML = name;
-    //      tr.appendChild(leftRow);
-    //      var rightRow = document.createElement('td');
-    //      rightRow.innerHTML = value;
-    //      tr.appendChild(rightRow);
-    //      table.appendChild(tr);
-    //  }
-    //
-
-
-    // for(var m in response)
-    // {
-    //   const flight = response[m];
-    //   const airline = flight.airline;
-    //   const flightNumber = flight.flightNumber;
-    //   console.log(airline);
-    // }
-
-  });
+  }
 };
