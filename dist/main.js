@@ -1,33 +1,31 @@
-'use strict';
+"use strict";
 
 document.addEventListener('DOMContentLoaded', function () {
   Flug();
 });
 var Flug = function Flug() {
-  var tungumal = 'is';
-  // $(init);
+  var tungumal = "is";
+  var stada = "arrivals";
 
   function init() {
-    //  getData('en', 'arrivals');
     var btnTungumal = document.querySelector("button.tungumal");
     var btnKomur = document.querySelector("button.komur");
     var btnBrottfarir = document.querySelector("button.brottfarir");
-    //  const btnDepartures = document.querySelector("button.departures");
-    //  const btnArrivals = document.querySelector("button.arrivals");
+    //default setting
+    getData(tungumal, stada);
 
     btnTungumal.addEventListener("click", function () {
       setLanguage();
+      getData(tungumal, stada);
     });
     btnKomur.addEventListener("click", function () {
-      getData(tungumal, 'arrivals');
+      stada = "arrivals";
+      getData(tungumal, stada);
     });
     btnBrottfarir.addEventListener("click", function () {
-      getData(tungumal, 'departures');
+      stada = "departures";
+      getData(tungumal, stada);
     });
-    //  btnArrivals.addEventListener("click",function(){getData(tungumal, 'arrivals')});
-    //  btnDepartures.addEventListener("click",function(){getData(tungumal, 'departures')});
-
-    // alert("jQuery");
   }
   init();
 
@@ -35,40 +33,25 @@ var Flug = function Flug() {
     var btnTungumal = document.querySelector("button.tungumal");
     var btnKomur = document.querySelector("button.komur");
     var btnBrottfarir = document.querySelector("button.brottfarir");
-    var pgHeader = document.querySelector("h1.jumbotron");
-    // document.querySelector("button.brottfarir").innerHtml = "Brottfarirr";
-
+    var pageHeader = document.querySelector("h1.islenska");
 
     if (tungumal === "is") {
       tungumal = "en";
-      btnTungumal.innerHTML = "Skipta yfir á íslensku";
-      $(btnKomur).empty();
-      $(btnKomur).empty();
-      // $(pgHeader).empty();
-      btnKomur.innerHTML = "Arrivals";
-      btnBrottfarir.innerHTML = "Departures";
-      // pgHeader.innerHtml = "Information about airplane departures and arrivals";
-      // btnKomur.innerHtml = "Arrivals";
-      // console.log(btnKomur);
-      // btnBrottfarir.innerHtml = "Departures";
+
+      pageHeader.textContent = "Arrivals and departures of airplanes";
+      btnKomur.textContent = "Arrivals";
+      btnBrottfarir.textContent = "Departures";
+      btnTungumal.textContent = "Skipta yfir á íslensku";
     } else if (tungumal === "en") {
       tungumal = "is";
-      btnTungumal.innerHTML = "Change to English";
-      $(btnKomur).empty();
-      $(btnKomur).empty();
-      // $(pgHeader).empty();
-      btnKomur.innerHTML = "Komur";
-      btnBrottfarir.innerHTML = "Brottfarir";
-
-      // btnKomur.innerHtml = "Komurr";
-      // console.log(btnKomur.innerHtml);
-      // btnBrottfarir.innerHtml = "Brottfarirr";
+      btnTungumal.textContent = "Change to English";
+      pageHeader.textContent = "Komur og brottfarir flugvéla";
+      btnKomur.textContent = "Komur";
+      btnBrottfarir.textContent = "Brottfarir";
     } else {
       tungumal = "is";
     }
-    console.log(tungumal);
   }
-
   //language getur verið 'en' eða 'is', type getur verið 'departures'
   //eða 'arrivals'
   function getData(language, type) {
@@ -81,11 +64,7 @@ var Flug = function Flug() {
         'type': type
       },
       'success': function success(response) {
-        // console.log(response.results);
-        //hreinsum domið
-        // while (taflaBdy.firstChild) {
-        //     taflaBdy.removeChild(taflaBdy.firstChild);
-        //   }
+
         //köllum á fylkið inní objectnum
         var gogn = response.results;
         makeTable(gogn, language, type);
