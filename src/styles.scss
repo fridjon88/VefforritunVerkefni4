@@ -1,8 +1,20 @@
 $black-color: #000;
-h1 { color: black-color; }
+h1 {
+  color: black-color;
+  margin-top: 5px;
+}
 
 main {
-
   font-size: 16px;
+}
 
+div.container{
+
+}
+
+button.tungumal {
+
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
