@@ -50,18 +50,28 @@ function flug() {
       airlineHeader = 'Flugfélag';
       dateHeader = 'Dagsetning';
       flightNumberHeader = 'Númer flugs';
-      plannedArrivalHeader = 'Áætluð koma';
-      realArrivalHeader = 'Koma';
       toHeader = 'Til';
       fromHeader = 'Frá';
+      if (type === 'arrivals') {
+        plannedArrivalHeader = 'Áætluð koma';
+        realArrivalHeader = 'Koma';
+      } else if (type === 'departures') {
+        plannedArrivalHeader = 'Áætluð brottför';
+        realArrivalHeader = 'Brottför';
+      }
     } else {
       airlineHeader = 'Airline';
       dateHeader = 'Date';
       flightNumberHeader = 'Flight number';
-      plannedArrivalHeader = 'Planned arrival';
-      realArrivalHeader = 'Real arrival';
       toHeader = 'To';
       fromHeader = 'From';
+      if (type === 'arrivals') {
+        plannedArrivalHeader = 'Planned arrival';
+        realArrivalHeader = 'Real arrival';
+      } else if (type === 'departures') {
+        plannedArrivalHeader = 'Planned departure';
+        realArrivalHeader = 'Departure';
+      }
     }
     // table.className = 'table';
     // heitum á dálum bætt við
