@@ -6,7 +6,7 @@ const eslint = require('gulp-eslint');
 const browserSync = require('browser-sync').create();
 
 gulp.task('lint-javascript', () => {
-  return gulp.src(['src/*.js','!node_modules/**'])
+  return gulp.src(['src/*.js', '!node_modules/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -21,13 +21,13 @@ gulp.task('lint-scss', () => {
 
 gulp.task('serve', function() {
 
-    browserSync.init({
-        server: "./"
-    });
+  browserSync.init({
+    server: './',
+  });
 
-    gulp.watch(["./*.html", "src/*"]).on("change", browserSync.reload);
-    gulp.watch("src/*.js", ['babel']);
-    gulp.watch("src/*.scss", ['sass']);
+  gulp.watch(['./*.html', 'src/*']).on('change', browserSync.reload);
+  gulp.watch('src/*.js', ['babel']);
+  gulp.watch('src/*.scss', ['sass']);
 });
 
 
@@ -44,7 +44,7 @@ gulp.task('sass:watch', function () {
 gulp.task('babel', () => {
   return gulp.src('src/main.js')
         .pipe(babel({
-          presets: ['es2015']
+          presets: ['es2015'],
         }))
         .pipe(gulp.dest('dist'));
 });
